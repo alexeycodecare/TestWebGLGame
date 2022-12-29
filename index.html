@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>PDP_Project</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="title">Hello My Custom Template</h1>
+        <div class="canvas-wrapper">
+          <canvas
+            id="unity-canvas"
+            width=960
+            height=600
+            style="width: 100%; height: 100%; background: #231F20"
+          ></canvas>
+        </div>
+        <div class="footer">
+          <button class="button full-size-button" id="unity-fullscreen-button">Full screen size</button>
+          <button class="button menu-button" id="menu-button">Go to menu</button>
+        </div>
+      </div>
+    </div>
+    <script src="Build/Build_WebGL_Custom_Template.loader.js"></script>
+    <script src="onInit.js"></script>
+    <script>
+      const unityCanvas = document.querySelector("#unity-canvas");
+
+      const config = {
+        dataUrl: "Build/Build_WebGL_Custom_Template.data.gz",
+        frameworkUrl: "Build/Build_WebGL_Custom_Template.framework.js.gz",
+        codeUrl: "Build/Build_WebGL_Custom_Template.wasm.gz",
+
+
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "PDP_Project",
+        productVersion: "0.1",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      };
+
+      const onProgress = (progress) => {
+        console.log(progress)
+      };
+
+      const onSuccess = (unityInstance) => {
+        onInit(unityInstance);
+      }
+
+      const onError = (message) => {
+        alert(message);
+      }
+
+      createUnityInstance(unityCanvas, config, onProgress).then(onSuccess).catch(onError);
+    </script>
+  </body>
+</html>
