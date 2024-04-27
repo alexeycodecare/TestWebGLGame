@@ -1,4 +1,8 @@
+let GameInstance;
+
 function onInit(unityInstance) {
+  GameInstance = unityInstance;
+
   const fullscreenButton = document.querySelector("#unity-fullscreen-button");
   const menuButton = document.querySelector("#menu-button");
 
